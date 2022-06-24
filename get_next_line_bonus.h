@@ -6,14 +6,16 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 02:22:07 by mmensing          #+#    #+#             */
-/*   Updated: 2022/06/24 02:22:24 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/06/24 12:43:47 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 #define GET_NEXT_LINE_BONUS_H
 
-//#define BUFFER_SIZE 20
+#ifndef BUFFER_SIZE
+#define BUFFER_SIZE 20
+#endif
 
 #include <stdlib.h>
 #include <unistd.h>

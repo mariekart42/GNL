@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 22:55:32 by mmensing          #+#    #+#             */
-/*   Updated: 2022/06/24 02:05:01 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/06/24 12:49:00 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ char	*ft_strchr(const char *str, int c)
 	int	i;
 
 	i = 0;
+	if(!str)
+		return (NULL);
 	if (str[0] == (char) c)
 		return ((char *) str);
 	while (str[i] != '\0')
