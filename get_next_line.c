@@ -6,27 +6,12 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 22:13:30 by mmensing          #+#    #+#             */
-/*   Updated: 2022/06/24 02:21:09 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/06/24 14:06:03 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-
-//Return one line that's allocated
-//Keep track of the readings in the static buffer
-//so on each iteration
-//You go check if there new line in the buffer
-//if there isn't then you merge the remainder with the line
-//and you read again till you reach the end of the file or you found a new line so that means you have line that you can return
-//if there isn't join the buffer with line and return the line
-//Update the buffer before returning so delete line from it 
-
-
-//file "S"
-//BUffersize = 2
-//S
-//return NULL;
 void	rev_func(size_t i, size_t n, char *st1, char *st2)
 {
 	while (i < n)
@@ -62,29 +47,24 @@ void	*ft_memmove(void *str1, const void *str2, size_t n)
 	return (str1);
 }
 
-void	*ft_memset(void *str, int c, size_t n)
+void	move_buff(char *buff)
 {
-	char	*ptr;
-	size_t	i;
+	int	buff_length;
+	int	line_lenght;
+	int	rest_buff;
 
-	ptr = (char *) str;
-	i = 0;
-	while (i < n)
-	{
-		ptr[i] = c;
-		i++;
-	}
-	str = (void *) ptr;
-	return (str);
-} 
-
-void move_buff(char *buff)
-{
-	int buff_length = ft_strlen(buff);
-	int line_lenght = buff_length - ft_strlen(ft_strchr(buff, '\n') + 1);
-	int rest_buff = buff_length - line_lenght;
+	buff_length = ft_strlen(buff);
+	line_lenght = buff_length - ft_strlen(ft_strchr(buff, '\n') + 1);
+	rest_buff = buff_length - line_lenght;
 	ft_memmove(buff, &buff[line_lenght], rest_buff);
 	ft_memset(&buff[rest_buff], '\0', line_lenght);
+}
+
+char	*end_of_file_no_nl(char *line_2, char *hold_2)
+{
+	line_2 = ft_strjoin(line_2, hold_2);
+	ft_memset(hold_2, '\0', 1);
+	return (line_2);
 }
 
 char	*get_next_line(int fd)
@@ -92,7 +72,7 @@ char	*get_next_line(int fd)
 	static char	hold[BUFFER_SIZE +1];
 	char		*line;
 	int			val;
-	
+
 	if (fd < 0)
 		return (NULL);
 	line = calloc(1, sizeof(char));
@@ -108,50 +88,12 @@ char	*get_next_line(int fd)
 		}
 		hold[val] = '\0';
 		if (val < BUFFER_SIZE && ft_strchr(hold, '\n') == NULL)
-		{
-			line = ft_strjoin(line, hold);
-			ft_memset(hold, '\0', 1);
-			return (line);
-		}
+			return (end_of_file_no_nl(line, hold));
 	}
 	line = ft_strjoin(line, hold);
 	move_buff(hold);
-	return line;
+	return (line);
 }
-
-// before n 
-
-//Static 
-//Greeter()
-//char arr[50] = "Siemanko"
-//Greater()
-//char arr[50]
-//This allocates new memory each time your run the function and also arr[50] dissapers on the function end
-
-//Static
-//static char[50] = "Siemanko";
-//Greater()
-//Greater()
-//static char[50] --- 
-
-//Static char *str = mallo("Siemanko");
-//free()
-
-//Pointer is just 
-
-//Array is basically the space in memory allocated next to each other
-//[0][1][2][0][3]
-//char
-//1 byte
-//60
-//[0][1][2][3]
-
-//char *ptr;
-//4 bytes
-//This pointer points to the allocated memory
-//ptr = malloc(sizeof(char), 60); 
-//
-
 
 // int main()
 // {
@@ -159,7 +101,6 @@ char	*get_next_line(int fd)
 // 	 printf("fd: %d\n", fd);
 // 	int i = 1;
 // 	char *ptr;
-	
 // 	while (i < 8)
 // 	{
 // 		ptr = get_next_line(fd);

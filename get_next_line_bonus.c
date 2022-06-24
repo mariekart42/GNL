@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 02:21:21 by mmensing          #+#    #+#             */
-/*   Updated: 2022/06/24 13:19:04 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/06/24 14:01:18 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,101 +47,55 @@ void	*ft_memmove(void *str1, const void *str2, size_t n)
 	return (str1);
 }
 
-void	*ft_memset(void *str, int c, size_t n)
+void	move_buff(char *buff)
 {
-	char	*ptr;
-	size_t	i;
+	int	buff_len;
+	int	line_len;
+	int	rest_buff;
 
-	ptr = (char *) str;
-	i = 0;
-	while (i < n)
-	{
-		ptr[i] = c;
-		i++;
-	}
-	str = (void *) ptr;
-	return (str);
-} 
+	buff_len = ft_strlen(buff);
+	line_len = buff_len - ft_strlen(ft_strchr(buff, '\n') + 1);
+	rest_buff = buff_len - line_len;
+	ft_memmove(buff, &buff[line_len], rest_buff);
+	ft_memset(&buff[rest_buff], '\0', line_len);
+}
 
-void move_buff(char *buff)
+char	*end_of_file_no_nl(char *line_2, char *hold_2)
 {
-	int buff_length = ft_strlen(buff);
-	int line_lenght = buff_length - ft_strlen(ft_strchr(buff, '\n') + 1);
-	int rest_buff = buff_length - line_lenght;
-	ft_memmove(buff, &buff[line_lenght], rest_buff);
-	ft_memset(&buff[rest_buff], '\0', line_lenght);
+	line_2 = ft_strjoin(line_2, hold_2);
+	ft_memset(hold_2, '\0', 1);
+	return (line_2);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	hold[1024][BUFFER_SIZE+1];
+	static char	hold[1024][BUFFER_SIZE + 1];
 	char		*line;
 	int			val;
-	
+
 	if (fd < 0)
 		return (NULL);
 	line = calloc(1, sizeof(char));
-	//printf("before while\n");
 	while (ft_strchr(hold[fd], '\n') == NULL)
 	{
 		if (hold[fd])
 			line = ft_strjoin(line, hold[fd]);
 		val = read(fd, hold[fd], BUFFER_SIZE);
-		if (val <= 0 && *line == '\0') // !*line
+		if (val <= 0 && *line == '\0')
 		{
 			free(line);
 			return (NULL);
 		}
 		hold[fd][val] = '\0';
 		if (val < BUFFER_SIZE && ft_strchr(hold[fd], '\n') == NULL)
-		{
-			line = ft_strjoin(line, hold[fd]);
-			ft_memset(hold[fd], '\0', 1);
-			return (line);
-		}
+			return (end_of_file_no_nl(line, hold[fd]));
 	}
-	//printf("after while\n");
 	line = ft_strjoin(line, hold[fd]);
 	move_buff(hold[fd]);
 	return (line);
 }
 
-// before n 
-
-//Static 
-//Greeter()
-//char arr[50] = "Siemanko"
-//Greater()
-//char arr[50]
-//This allocates new memory each time your run the function and also arr[50] dissapers on the function end
-
-//Static
-//static char[50] = "Siemanko";
-//Greater()
-//Greater()
-//static char[50] --- 
-
-//Static char *str = mallo("Siemanko");
-//free()
-
-//Pointer is just 
-
-//Array is basically the space in memory allocated next to each other
-//[0][1][2][0][3]
-//char
-//1 byte
-//60
-//[0][1][2][3]
-
-//char *ptr;
-//4 bytes
-//This pointer points to the allocated memory
-//ptr = malloc(sizeof(char), 60); 
-//
-
-
 // int main()
-
 // {
 //     int fd1 = open("test1.txt", O_RDONLY, 0);
 //     int fd2 = open("test2.txt", O_RDONLY, 0);
@@ -153,14 +107,4 @@ char	*get_next_line(int fd)
 // 	free(ptr);
 // 	ptr = get_next_line(fd2);
 // 	printf("Ptr %d: %s\n", fd2, ptr);
-// 	//  get_next_line(fd2);
-// 	// int i = 1;
-	
-// 	// while (i < 8)
-// 	// {
-// 	// 	ptr = get_next_line(fd);
-// 	// 	printf("Ptr %d: %s\n", i, ptr);
-// 	// 	free(ptr);
-// 	// 	i++;
-// 	// }
 // }

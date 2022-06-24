@@ -6,26 +6,21 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 22:14:45 by mmensing          #+#    #+#             */
-/*   Updated: 2022/06/24 02:10:53 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/06/24 13:59:06 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
-#define GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 //#define BUFFER_SIZE 20
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stddef.h>
-#include <string.h>
-#include <strings.h>
-
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *str, int c);
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stddef.h>
+# include <string.h>
+# include <strings.h>
 
 // open & close
 # include <fcntl.h> 
@@ -34,5 +29,11 @@ char	*ft_strchr(const char *str, int c);
 //read
 # include <sys/types.h>
 # include <sys/uio.h>
+
+char	*get_next_line(int fd);
+void	*ft_memset(void *str, int c, size_t n);
+size_t	ft_strlen(const char *str);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *str, int c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 22:55:32 by mmensing          #+#    #+#             */
-/*   Updated: 2022/06/24 12:49:00 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/06/24 14:03:53 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,14 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		ptr[i] = s1[i];
 		i++;
 	}
-	 free((void *)s1);
 	while (s2[k] != '\n' && s2[k] != '\0')
 	{
 		ptr[i] = s2[k];
 		i++;
 		k++;
 	}
-	if(s2[k] && s2[k] == '\n')
+	if (s2[k] && s2[k] == '\n')
 		ptr[i] = '\n';
-
 	return (ptr);
 }
 
@@ -81,7 +79,7 @@ char	*ft_strchr(const char *str, int c)
 	int	i;
 
 	i = 0;
-	if(!str)
+	if (!str)
 		return (NULL);
 	if (str[0] == (char) c)
 		return ((char *) str);
@@ -98,3 +96,18 @@ char	*ft_strchr(const char *str, int c)
 	return ((char *) '\0');
 }
 
+void	*ft_memset(void *str, int c, size_t n)
+{
+	char	*ptr;
+	size_t	i;
+
+	ptr = (char *) str;
+	i = 0;
+	while (i < n)
+	{
+		ptr[i] = c;
+		i++;
+	}
+	str = (void *) ptr;
+	return (str);
+}
