@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 22:13:30 by mmensing          #+#    #+#             */
-/*   Updated: 2022/06/24 14:06:03 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/06/24 15:04:20 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*get_next_line(int fd)
 
 // int main()
 // {
-//      int fd = open("test2.txt", O_RDONLY, 0);
+//      int fd = open("binary.bin", O_RDONLY, 0);
 // 	 printf("fd: %d\n", fd);
 // 	int i = 1;
 // 	char *ptr;
