@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 22:14:45 by mmensing          #+#    #+#             */
-/*   Updated: 2022/06/24 15:27:22 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/07/18 20:46:39 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 char	*get_next_line(int fd);
 void	*ft_memset(void *str, int c, size_t n);
 size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *str, int c);
-
+void	*ft_calloc(size_t count, size_t size);
+char	*ft_strchr(char *s, int c);
+char	*ft_strjoin(char *s1, char *s2);
 #endif
