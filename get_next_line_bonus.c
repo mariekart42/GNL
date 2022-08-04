@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariemensing <mariemensing@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 02:21:21 by mmensing          #+#    #+#             */
-/*   Updated: 2022/06/24 14:01:18 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/08/04 13:58:52 by mariemensin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
